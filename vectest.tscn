@@ -8,9 +8,9 @@ position = Vector2( 6.00031, 12.0002 )
 script = ExtResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 336, -567 )
+position = Vector2( 869.25, -3000 )
 current = true
-zoom = Vector2( 2, 2 )
+zoom = Vector2( 12, 12 )
 
 [node name="DirtyImperativeDraw" type="Node2D" parent="."]
 script = ExtResource( 2 )
