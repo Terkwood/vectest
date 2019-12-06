@@ -1,12 +1,13 @@
 extends Node2D
 
-const STEP = Vector2(0,100)
+const STEP = Vector2(0,50)
 const DELTA = deg2rad(22.5)
 
 func _ready():
 	var l = Line2D.new()
-	l.width = 10
-	l.rotate(deg2rad(180))
+	l.width = 5
+	l.rotate(deg2rad(180))  # Face up
+	l.scale = Vector2(-1,1) # Flip along X axis
 	
 	var p0 = Vector2(0,0)
 	var p1 = p0 + STEP
