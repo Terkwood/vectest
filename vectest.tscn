@@ -3,5 +3,6 @@
 [ext_resource path="res://vectest.gd" type="Script" id=1]
 
 [node name="vectest" type="Node2D"]
+position = Vector2( 505.5, 589.5 )
 script = ExtResource( 1 )
 
