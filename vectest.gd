@@ -3,6 +3,29 @@ extends Node2D
 const STEP = Vector2(0,50)
 const DELTA = deg2rad(22.5)
 
+func draw_tree(ser_tree, pos, rot, stack):
+	if ser_tree.empty():
+		print("draw_tree done")
+		return
+	
+	var prs = draw_symbol(ser_tree.substr(0,1), pos, rot, stack, Line2D.new())
+	
+	return draw_tree(ser_tree.substr(1,ser_tree.length() - 1), prs[0], prs[1], prs[2])
+
+func draw_symbol(sym, pos, rot, stack, line):
+	if sym == "F":
+		return
+	elif sym == "+":
+		return
+	elif sym == "-":
+		return
+	elif sym == "[":
+		return
+	elif sym == "]":
+		return
+		
+	return
+
 func _ready():
 	var l = Line2D.new()
 	l.width = 5
@@ -16,11 +39,11 @@ func _ready():
 	l.add_point(pos)
 	
 	# step 1
-	pos = pos + STEP
+	pos = pos + STEP.rotated(d)
 	l.add_point(pos)
 	
 	# step 2
-	pos = pos + STEP
+	pos = pos + STEP.rotated(d)
 	l.add_point(pos)
 	
 	# step 3
