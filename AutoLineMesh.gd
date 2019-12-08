@@ -1,6 +1,22 @@
 extends MeshInstance2D
 
 const WIDTH = 100
+const STEP = 200
+const Z = Vector3(0,0,1)
+
+func draw_step(point, rot, st):
+	# Neg corner
+	st.add_vertex(Vector3(point.x, point.y, 0).rotated(Z,rot))
+	st.add_vertex(Vector3(point.x, point.y + STEP, 0).rotated(Z,rot))
+	st.add_vertex(Vector3(point.x + WIDTH, point.y + STEP, 0).rotated(Z,rot))
+
+	# Pos corner
+	st.add_vertex(Vector3(point.x + WIDTH, point.y + STEP, 0).rotated(Z,rot))
+	st.add_vertex(Vector3(point.x + WIDTH, point.y, 0).rotated(Z,rot))
+	var final = Vector3(point.x, point.y + STEP, 0).rotated(Z,rot)
+	st.add_vertex(final)
+	
+	return Vector2(final.x, final.y)
 	
 
 func _ready():
@@ -15,29 +31,10 @@ func _ready():
 	# Let's draw a rectangle from -200, -200 to 200, 200
 	st.begin(Mesh.PRIMITIVE_TRIANGLE_FAN)
 	
-	
-	var r = deg2rad(22.5)
-	var axis = Vector3(0,0,1)
-	
-	
-	
-	# First POINT =  0,  0  ROTATED by r
-	var first  = Vector3(0, 0, 0).rotated(axis,r)
-	var second = Vector3(WIDTH, 200, 0).rotated(axis,r)
-	# Second POINT = 0,200  ROTATED by r
-	# Width = 100
-	
-	# Neg corner
-	st.add_vertex(first)
-	st.add_vertex(Vector3(0, 200, 0).rotated(axis,r))
-	st.add_vertex(second)
+	var r = deg2rad(40)
 
-	# Pos corner
-	st.add_vertex(Vector3(WIDTH, 200, 0).rotated(axis,r))
-	st.add_vertex(Vector3(WIDTH, 0, 0).rotated(axis,r))
-	st.add_vertex(Vector3(0, 200, 0).rotated(axis,r))
-	
-	# Third POINT = 
+	var p1 = draw_step(Vector2(-111, -222), r, st)
+	#draw_step(p1, 2 * r, st)
 	
 	
 	mesh = st.commit()
