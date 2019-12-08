@@ -16,22 +16,28 @@ func _ready():
 	st.begin(Mesh.PRIMITIVE_TRIANGLE_FAN)
 	
 	
-	# First POINT = 0,0
-	# Second POINT = 0,200
-	# Width = 100
-	
 	var r = deg2rad(22.5)
 	var axis = Vector3(0,0,1)
 	
+	
+	
+	# First POINT =  0,  0  ROTATED by r
+	var first  = Vector3(0, 0, 0).rotated(axis,r)
+	var second = Vector3(WIDTH, 200, 0).rotated(axis,r)
+	# Second POINT = 0,200  ROTATED by r
+	# Width = 100
+	
 	# Neg corner
-	st.add_vertex(Vector3(0, 0, 0))
-	st.add_vertex(Vector3(0, 200, 0))
-	st.add_vertex(Vector3(WIDTH, 200, 0))
+	st.add_vertex(first)
+	st.add_vertex(Vector3(0, 200, 0).rotated(axis,r))
+	st.add_vertex(second)
 
 	# Pos corner
 	st.add_vertex(Vector3(WIDTH, 200, 0).rotated(axis,r))
 	st.add_vertex(Vector3(WIDTH, 0, 0).rotated(axis,r))
 	st.add_vertex(Vector3(0, 200, 0).rotated(axis,r))
+	
+	# Third POINT = 
 	
 	
 	mesh = st.commit()

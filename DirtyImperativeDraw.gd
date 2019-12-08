@@ -5,7 +5,7 @@ const DELTA = deg2rad(-22.5)
 
 func new_line():
 	var l = Line2D.new()
-	l.width = 5
+	l.width = 20
 	return l
 
 
@@ -62,7 +62,7 @@ var tree_pos = Vector2(0,0)
 var tree_rot = 0
 var stack = []
 var line = new_line()
-var to_draw = HARD
+var to_draw = FRIENDLY
 
 func _ready():
 	draw_tree()
