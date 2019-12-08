@@ -19,8 +19,7 @@ func draw_tree():
 		tree_rot = prs[1]
 		stack = prs[2]
 		line = prs[3]
-	
-	print("draw_tree done")
+
 
 
 func draw_symbol(sym, pos, rot, stack, line):
@@ -34,11 +33,11 @@ func draw_symbol(sym, pos, rot, stack, line):
 		return [pos, rot - DELTA, stack, line]
 	elif sym == "[":
 		stack.push_front([pos, rot])
-		print("push [pos %s, rot %s]" % [pos, rot])
+		#print("push [pos %s, rot %s]" % [pos, rot])
 		return [pos, rot, stack, line]
 	elif sym == "]":
 		var pr = stack.pop_front()
-		print("pop [pos %s, rot %s]" % [pr[0], pr[1]])
+		#print("pop [pos %s, rot %s]" % [pr[0], pr[1]])
 		
 		# you need to start a new line at the old position
 		add_child(line)

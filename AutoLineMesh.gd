@@ -6,14 +6,14 @@ const Z = Vector3(0,0,1)
 
 func draw_step(point, rot, st, i):
 
-	
+	var offset = Vector3(point.x, point.y, 0)
 	# Neg corner
-	st.add_vertex(Vector3(point.x, point.y, 0).rotated(Z,rot))
-	var final = Vector3(point.x, point.y + STEP, 0).rotated(Z,rot)
+	st.add_vertex(Vector3(0,0, 0).rotated(Z,rot) + offset)
+	var final = Vector3(0, STEP, 0).rotated(Z,rot) + offset
 	st.add_vertex(final)
 	
-	st.add_vertex(Vector3(point.x + WIDTH, point.y + STEP, 0).rotated(Z,rot))
-	st.add_vertex(Vector3(point.x + WIDTH, point.y, 0).rotated(Z,rot))
+	st.add_vertex(Vector3( WIDTH, STEP, 0).rotated(Z,rot) + offset)
+	st.add_vertex(Vector3(WIDTH, 0, 0).rotated(Z,rot) + offset)
 
 	var j = i * 4
 	st.add_index(j)
@@ -39,10 +39,11 @@ func _ready():
 	# Let's draw a rectangle from -200, -200 to 200, 200
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 	
-	var r = deg2rad(40)
+	var r = deg2rad(-40)
 
 	var p1 = draw_step(Vector2(-111, -222), r, st, 0)
-	draw_step(p1, 0, st, 1)
+	var p2 = draw_step(p1, deg2rad(-80), st, 1)
+	var p3 = draw_step(p2, deg2rad(-120), st, 2)
 
 	mesh = st.commit()
 	
