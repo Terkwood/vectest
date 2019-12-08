@@ -92,7 +92,7 @@ const FRIENDLY = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
 var tree_pos = Vector2(0,0)
 var tree_rot = 0
 var stack = []
-var to_draw = FRIENDLY
+var to_draw = HARD
 var width = line_width(to_draw)
 var surface_tool = SurfaceTool.new()
 
