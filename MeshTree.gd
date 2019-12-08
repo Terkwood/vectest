@@ -2,7 +2,7 @@ extends MeshInstance2D
 
 const STEP = -25
 const DELTA = deg2rad(-22.5)
-const WIDTH = 12
+const WIDTH = 3
 const Z = Vector3(0,0,1)
 
 var st_index = 0
@@ -80,7 +80,7 @@ const FRIENDLY = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
 var tree_pos = Vector2(0,0)
 var tree_rot = 0
 var stack = []
-var to_draw = FRIENDLY
+var to_draw = HARD
 var surface_tool = SurfaceTool.new()
 
 func _ready():
