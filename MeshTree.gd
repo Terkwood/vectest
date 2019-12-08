@@ -2,7 +2,6 @@ extends MeshInstance2D
 
 const STEP = -25
 const DELTA = deg2rad(-22.5)
-const WIDTH = 3
 const Z = Vector3(0,0,1)
 
 var st_index = 0
@@ -27,8 +26,8 @@ func draw_step(point, rot, st):
 	var final = Vector3(0, STEP, 0).rotated(Z,rot) + offset
 	st.add_vertex(final)
 	
-	st.add_vertex(Vector3( WIDTH, STEP, 0).rotated(Z,rot) + offset)
-	st.add_vertex(Vector3(WIDTH, 0, 0).rotated(Z,rot) + offset)
+	st.add_vertex(Vector3( width, STEP, 0).rotated(Z,rot) + offset)
+	st.add_vertex(Vector3(width, 0, 0).rotated(Z,rot) + offset)
 
 	var j = st_index * 4
 	st.add_index(j)
@@ -74,7 +73,13 @@ func line_width(s):
 	var no_pos = no_neg.replacen("+","")
 	var no_lb = no_pos.replacen("[","")
 	var no_rb = no_lb.replacen("]","")
-	return no_rb.length()
+
+	var m = 4096
+	var t = 276.0
+	var b = 4
+	var r = b + (no_rb.length() - m) / t
+
+	return r
 
 const EASY = "FF-[-F+F+F]"
 const MEDIUM = "FF-[-F+F+F]+[+F-F-F]FF-[-F+F+F]+[+F-F-F]-[-FF-[-F+F+F]+[+F-F-F]+FF-[-F+F+F]+[+F-F-F]+FF-[-F+F+F]+[+F-F-F]]+[+FF-[-F+F+F]+[+F-F-F]-FF-[-F+F+F]+[+F-F-F]-FF-[-F+F+F]+[+F-F-F]]FF-[-F+F+F]+[+F-F-F]FF-[-F+F+F]+[+F-F-F]-[-FF-[-F+F+F]+[+F-F-F]+FF-[-F+F+F]+[+F-F-F]+FF-[-F+F+F]+[+F-F-F]]+[+FF-[-F+F+F]+[+F-F-F]-FF-[-F+F+F]+[+F-F-F]-FF-[-F+F+F]+[+F-F-F]]-[-FF-[-F+F+F]+[+F-F-F]FF-[-F+F+F]+[+F-F-F]-[-FF-[-F+F+F]+[+F-F-F]+FF-[-F+F+F]+[+F-F-F]+FF-[-F+F+F]+[+F-F-F]]+[+FF-[-F+F+F]+[+F-F-F]-FF-[-F+F+F]+[+F-F-F]-FF-[-F+F+F]+[+F-F-F]]+FF-[-F+F+F]+[+F-F-F]FF-[-F+F+F]+[+F-F-F]-[-FF-[-F+F+F]+[+F-F-F]+FF-[-F+F+F]+[+F-F-F]+FF"
@@ -87,7 +92,8 @@ const FRIENDLY = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
 var tree_pos = Vector2(0,0)
 var tree_rot = 0
 var stack = []
-var to_draw = HARD
+var to_draw = FRIENDLY
+var width = line_width(to_draw)
 var surface_tool = SurfaceTool.new()
 
 func _ready():
@@ -101,3 +107,4 @@ func _ready():
 	surface_tool.begin(Mesh.PRIMITIVE_TRIANGLES)
 	
 	draw_tree()
+
